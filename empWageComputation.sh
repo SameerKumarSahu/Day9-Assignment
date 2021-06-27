@@ -163,12 +163,12 @@ do
                 totalSalary=$(($totalSalary+$salary));
 done
 echo "monthly salary of employee is "$totalSalary
-#Dict[salary]=$totalSalary
 
 
+Dict[salary]=$totalSalary
 
 
-echo "Daily wages" "${Dict[@]}"
+echo "Daily and total wages is " "${Dict[@]}"
 echo "Number of Days" ${array[@]}
 
 
