@@ -1,5 +1,7 @@
 #! /bin/bash -x
 
+declare -A Dict
+
 echo "Welcome Message"
 
 isPresent=1
@@ -13,6 +15,7 @@ if [[ $isPresent -eq $checkAvail ]]
 then
 	echo "Employee is Present"
 	totalSalary=$(( $empWagePerHrs * $empDayHrs ))
+	
         echo "Total Salary of emp is :" $totalSalary
 else
         echo "Employee is Absent"
@@ -56,12 +59,13 @@ case $empCheck in
 esac
 salary=$(($empHrs*$empRatePerHr));
 echo "Salary of employee is "$salary
+echo"======"
 
 numWorkingDays=20;
-
 for (( day=1; day<=$numWorkingDays; day++ ))
 do
         empCheck=$((RANDOM%3));
+		
                 case $empCheck in
                         $isFullTime)
                                 empHrs=8
@@ -74,11 +78,11 @@ do
                                 ;;
                 esac
                 salary=$(($empHrs*$empRatePerHr));
-                totalSalary=$(($totalSalary+$salary));
+		totalSalary=$(($totalSalary+$salary));
 done
 echo "monthly salary of employee is "$totalSalary
 
-
+echo "======="
 maxHrsInMonth=100;
 totalEmpHrs=0;
 totalWorkingDays=0;
@@ -106,7 +110,7 @@ done
 totalSalary=$(($totalEmpHrs*$empRatePerHr));
 echo "monthly salary of employee is "$totalSalary
 
-
+echo "=========="
 function getWorkingHours() {
         case $1 in
                 $isFullTime)
@@ -130,3 +134,46 @@ done
 
 totalsalary=$(($totalWorkingHours*$empRatePerHr));
 echo "monthly salary of employee is "$totalsalary
+
+echo "============="
+
+
+declare -A Dict
+count=1
+counter=1
+for (( day=1; day<=$numWorkingDays; day++ ))
+do
+	    
+		array[((counter++))]=$day
+        empCheck=$((RANDOM%3));
+                ((count++))
+                case $empCheck in
+                        $isFullTime)
+                                empHrs=8
+                                ;;
+                        $isPartTime)
+                                empHrs=8
+                                ;;
+                        *)
+                                empHrs=0
+                                ;;
+                esac
+                salary=$(($empHrs*$empRatePerHr));
+                Dict[$count]=$salary
+                totalSalary=$(($totalSalary+$salary));
+done
+echo "monthly salary of employee is "$totalSalary
+#Dict[salary]=$totalSalary
+
+
+
+
+echo "Daily wages" "${Dict[@]}"
+echo "Number of Days" ${array[@]}
+
+
+
+
+
+
+
