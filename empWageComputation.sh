@@ -56,3 +56,24 @@ case $empCheck in
 esac
 salary=$(($empHrs*$empRatePerHr));
 echo "Salary of employee is "$salary
+
+numWorkingDays=20;
+
+for (( day=1; day<=$numWorkingDays; day++ ))
+do
+        empCheck=$((RANDOM%3));
+                case $empCheck in
+                        $isFullTime)
+                                empHrs=8
+                                ;;
+                        $isPartTime)
+                                empHrs=8
+                                ;;
+                        *)
+                                empHrs=0
+                                ;;
+                esac
+                salary=$(($empHrs*$empRatePerHr));
+                totalSalary=$(($totalSalary+$salary));
+done
+echo "monthly salary of employee is "$totalSalary
