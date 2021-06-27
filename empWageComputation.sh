@@ -105,3 +105,28 @@ done
 
 totalSalary=$(($totalEmpHrs*$empRatePerHr));
 echo "monthly salary of employee is "$totalSalary
+
+
+function getWorkingHours() {
+        case $1 in
+                $isFullTime)
+                        workHours=8
+                        ;;
+                $isPartTime)
+                        workHours=4
+                        ;;
+                *)
+                        workHours=0
+                        ;;
+        esac
+}
+while [[ $totalWorkingHours -lt $maxHrsInMonth &&
+        $totalWorkingHours -lt $numWorkingDays ]]
+do
+        ((totalWorkingDays++))
+        getWorkingHours $((RANDOM%3))
+        totalWorkingHours=$(($totalWorkingHours+$workHours));
+done
+
+totalsalary=$(($totalWorkingHours*$empRatePerHr));
+echo "monthly salary of employee is "$totalsalary
